@@ -3,8 +3,14 @@
 limitVolume to 10
 
 on limitVolume to limit
-	set volume output volume min({currentvolume(), limit})
+	if not isMuted() then
+		set volume output volume min({currentvolume(), limit})
+	end if
 end limitVolume
+
+on isMuted()
+	return output muted of (get volume settings)
+end isMuted
 
 on currentvolume()
 	return output volume of (get volume settings)
